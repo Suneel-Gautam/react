@@ -20,7 +20,7 @@ function App() {
         <br />
         <button
           onClick={() => {
-            if(count > 0){
+            if (count > 0) {
               setCount(count - 1);
             }
           }}
