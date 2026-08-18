@@ -1,6 +1,8 @@
-const Card = ({ name = "card" }) => {
+const Card = ({ name = "card", color = "text-black"  }) => {
   return (
-    <div className="border border-amber-400  w-40 rounded-sm p-2">
+    <div
+      className={`border border-amber-400  w-40 rounded-sm p-2 ${color} `}
+    >
       <h1>{name} cart</h1>
     </div>
   );
