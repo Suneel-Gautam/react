@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import "./App.css";
 
 function App() {
@@ -20,6 +20,13 @@ function App() {
     setPassword(pass);
   }, [isNumber, isChar, length]);
 
+  const passwordRef = useRef(null);
+
+  function copytoClipboard() {
+    passwordRef.current?.select();
+    window.navigator.clipboard.writeText(password);
+  }
+
   useEffect(() => {
     const timer = setTimeout(() => {
       passwordGenerator();
@@ -34,13 +41,17 @@ function App() {
         <h1 className="text-2xl">Password Generator </h1>
         <div className="flex mt-4">
           <input
+            ref={passwordRef}
             type="text"
             className="border bg-white text-black outline-none rounded-r-none rounded-md  p-2 w-full"
             value={password}
             placeholder="Password"
-            disabled
+            readOnly
           />
-          <button className="bg-blue-800 px-8 py-4 rounded-md rounded-l-none cursor-pointer hover:bg-blue-700 transition-all duration-200 ease-in-out">
+          <button
+            onClick={copytoClipboard}
+            className="bg-blue-800 px-8 py-4 rounded-md rounded-l-none cursor-pointer hover:bg-blue-600 transition-all duration-200 ease-in-out active:bg-blue-900"
+          >
             copy
           </button>
         </div>
