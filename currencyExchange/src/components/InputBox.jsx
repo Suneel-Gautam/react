@@ -20,7 +20,8 @@ function InputBox({
           disabled={amountdisable}
           value={amount}
           onChange={(e) =>
-            onAmountChanges && onAmountChanges(Number(e.target.value))
+            onAmountChanges &&
+            onAmountChanges(e.target.value === "" ? "" : Number(e.target.value))
           }
         />
       </div>
@@ -31,13 +32,15 @@ function InputBox({
           onChange={(e) =>
             onCurrencyChanges && onCurrencyChanges(e.target.value)
           }
-          disabled={currencydisable}
           value={selectedCurrency}
+          disabled={currencydisable}
         >
           {currencyOptions.map((currency, index) => {
-            <option key={index} value={currency}>
-              {currency}
-            </option>;
+            return (
+              <option key={index} value={currency}>
+                {currency}
+              </option>
+            );
           })}
         </select>
       </div>
