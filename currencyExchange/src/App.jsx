@@ -11,10 +11,15 @@ function App() {
   const currencyInfo = useCurrencyInfo(from);
   const options = Object.keys(currencyInfo);
 
-  const handleConvert = (e) => {
-    e.preventDefault();
+  const handleConvert = () => {
     setConvertedAmount(amount * currencyInfo[to]);
   };
+  function handleSwap() {
+    setFrom(to);
+    setTo(from);
+    setConvertedAmount(amount);
+    setAmount(convertedAmount);
+  }
 
   return (
     <>
@@ -26,7 +31,12 @@ function App() {
       >
         <div className="w-full">
           <div className="w-full max-w-md mx-auto border border-gray-60 rounded-lg p-5 backdrop-blur-sm bg-white/30">
-            <form on>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleConvert();
+              }}
+            >
               <div className="w-full mb-1">
                 <InputBox
                   label={"from"}
@@ -38,7 +48,11 @@ function App() {
                 />
               </div>
               <div className="relative w-full h-0.5">
-                <button className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-0.5">
+                <button
+                type="button"
+                  className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-0.5"
+                  onClick={handleSwap}
+                >
                   Swap
                 </button>
               </div>
