@@ -1,15 +1,21 @@
 import "./App.css";
-import Header from "./components/header/Header";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./Layout";
 import Home from "./components/home/Home";
-import Footer from "./components/footer/Footer";
-import { Router, Route } from "react-router-dom";
+import About from "./components/about/aboutus";
+import Contact from "./components/contact/Contact";
+import Github from "./components/github/Github";
 function App() {
   return (
     <>
-  
-      <Header />
-      <Home />
-      <Footer />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/github" element={<Github />} />
+        </Route>
+      </Routes>
     </>
   );
 }
