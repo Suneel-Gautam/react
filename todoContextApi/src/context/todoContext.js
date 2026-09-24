@@ -3,9 +3,7 @@ import { useContext, createContext } from "react";
 const TodoContext = createContext({
     todos: [
         {
-            id: 1,
-            title: "tittle",
-            isCompleted: false
+
         }
     ],
     addTodo: (todo) => { },
@@ -16,6 +14,6 @@ const TodoContext = createContext({
 
 export const TodoProvider = TodoContext.Provider
 
-export const useMemo = () => {
+export const useTodo = () => {
     return useContext(TodoContext)
 }
